@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Lab</title>
+</head>
+
+<body>
+
+    <!-- Week 2 Title -->
+    <h1>Week 2 — HTML5</h1>
+
+    <!-- Course Content Heading -->
+    <h2>Full Teaching Content — Lectures 4–6, Tutorial, Lab</h2>
+
+    <!-- Course Information -->
+    <p>BO CDA 208 — Web Development and App Design.</p>
+
+    <p>
+        HTML fundamentals → semantic HTML & accessibility → forms & modern HTML,
+        closing with the semester-project tutorial and the multi-page lab.
+    </p>
+
+    <hr>
+
+    <!-- Lecture 4 -->
+    <h2>Lecture 4 — HTML Fundamentals</h2>
+
+    <!-- Introduction Section -->
+    <h3>A. Introduction to HTML</h3>
+
+    <ul>
+        <li>
+            <b>What is HTML?</b>
+            HyperText Markup Language — a markup language, not a programming language.
+            It describes structure and content, not logic.
+        </li>
+
+        <li>
+            <b>Role of HTML in Web development</b>
+            — HTML is the structure/content layer only. It says nothing about color,
+            layout, or interactivity — that's CSS and JavaScript's job, coming in later weeks.
+        </li>
+
+        <li>
+            <b>HTML vs. CSS vs. JavaScript</b>
+            — HTML = structure, CSS = presentation, JS = behavior. Keep this three-way split
+            visible all semester; almost every later topic is "which of these three am I touching right now?"
+        </li>
+
+        <li>
+            <b>HTML as a markup language</b>
+            — a markup language tells a browser how to present or organize information;
+            a programming language tells a computer how to compute something.
+            HTML has no variables, no loops, no logic.
+        </li>
+
+        <li>
+            <b>HTML document vs. Web page</b>
+            — the .html file is the document (what you edit); the "web page" is what the browser renders from it.
+            Same edit/preview split introduced in Week 1's setup discussion.
+        </li>
+
+        <li>
+            <b>HTML5 and the evolution of HTML</b>
+            — HTML (1991) → HTML 4.01 (1999) → XHTML (a stricter, XML-based dead end) → HTML5 (2014),
+            which added semantic elements, native audio/video, canvas, and new input types.
+            HTML is now a "living standard" maintained by WHATWG — continuously updated rather than released in discrete
+            numbered versions.
+        </li>
+    </ul>
+
+
+
+        <!-- Basic HTML Document Structure -->
+    <h3>B. Basic HTML Document Structure</h3>
+
+    <p>
+        The full boilerplate, run once end to end, then broken apart:
+    </p>
+
+    <!-- Basic HTML Boilerplate Example -->
+    <pre>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- page content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+
+    <!-- Elements and Roles Table -->
+    <table border="1">
+        <tr>
+            <th>Element</th>
+            <th>Role</th>
+        </tr>
+
+        <tr>
+            <td>&lt;!doctype html&gt;</td>
+            <td>Required preamble; ensures the browser renders in standards mode.</td>
+        </tr>
+
+        <tr>
+            <td>&lt;html&gt;</td>
+            <td>The root element — wraps everything; lang sets the page's primary language.</td>
+        </tr>
+
+        <tr>
+            <td>&lt;head&gt;</td>
+            <td>Container for metadata — nothing here is shown directly to visitors.</td>
+        </tr>
+
+        <tr>
+            <td>&lt;title&gt;</td>
+            <td>Text shown in the browser tab and used when bookmarking.</td>
+        </tr>
+
+        <tr>
+            <td>&lt;body&gt;</td>
+            <td>Everything visitors actually see.</td>
+        </tr>
+    </table>
+    
+    <p>
+        <b>• Comments</b> — <!-- text --> is never rendered; it's for developers reading the source only. Not truly
+        hidden —
+        visible via View Page Source.
+    </p>
+
+
+    <h2>C. HTML Elements</h2>
+
+    <p>
+        • What is an element? A start tag, content, and end tag together — the basic building block of a page. <br>
+        • Opening and closing tags — &lt;p&gt; opens, &lt;/p&gt; closes; forgetting the closing tag is the single most
+        common beginner error. <br>
+        • Empty/void elements — elements with no content to wrap, so no closing tag: &lt;br&gt;, &lt;hr&gt;,
+        &lt;img&gt;, &lt;input&gt;, &lt;meta&gt;, &lt;link&gt;. <br>
+        • Nested elements — elements placed inside other elements; nesting must not cross (close tags in the reverse
+        order you opened them). <br>
+        • Parent and child elements — the containing element is the parent, the contained one is the child. This
+        vocabulary will resurface constantly once JavaScript starts walking the DOM in Week 6. <br>
+        • Block-level vs. inline elements — conceptual introduction only: block elements (p, div, h1–h6) start on a new
+        line and take the full available width; inline elements (span, a, strong) flow within a line of text. Full
+        layout consequences are a CSS topic, Weeks 3–4 — here, just recognize the two categories. <br>
+
+    </p>
+
+
+    <h2>D. HTML Attributes</h2>
+    <p>
+        • <b>What is an attribute?</b> A name="value" pair inside a start tag that configures or describes the element.
+        • <b>Global attributes</b> — available on virtually any element: id, class, title, style, data-*, lang, hidden.
+    </p>
+
+    <table border="1">
+        <thead>
+            <th>Attribute</th>
+            <th>Use</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>A unique identifier for one specific element on the page — used for in-page links, CSS, and
+                    JavaScript targeting.</td>
+            </tr>
+            <tr>
+                <td>class</td>
+                <td>A reusable label; many elements can share the same class, and one element can carry several classes.
+                </td>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>Tooltip text shown on mouse-over (covered already for images — works the same way on any element).
+                </td>
+            </tr>
+            <tr>
+                <td>style</td>
+                <td>Inline CSS — brief mention only. Real styling is external stylesheets, starting Week 3; treat inline
+                    style as a last resort, not a habit.</td>
+            </tr>
+            <tr>
+                <td>data=*</td>
+                <td>Custom data attributes for storing extra information JavaScript can read later, e.g.
+                    data-user-id="42".</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div>
+        <h2>E. Text Content</h2>
+
+        <p>Headings (&lt;h1&gt;–&lt;h6&gt;), paragraphs (&lt;p&gt;), line breaks (&lt;br&gt;), and horizontal rules
+            (&lt;hr&gt;) were introduced in the Beginning HTML material — recap briefly, then focus class time on the
+            semantic point below. <br> <br>
+            • &lt;strong&gt; vs. &lt;em&gt; over &lt;b&gt; and &lt;i&gt;: &lt;strong&gt; and &lt;em&gt; signal genuine
+            importance/emphasis to screen readers and search engines; &lt;b&gt; and &lt;i&gt; are purely visual with no
+            such
+            signal. <br> <br>
+            Why semantic text elements are preferred: the visual result can look identical, but only the semantic
+            version
+            tells assistive technology and machines that the meaning matters, not just the appearance.</p>
+    </div>
+
+    <div>
+        <h2>F. Hyperlinks</h2>
+        <p>• &lt;a&gt; element — links pages, text, or images to another destination via href.</p>
+
+        <table border="1">
+            <tr>
+                <td>&lt;a href="about.html"&gt;About&lt;/a&gt; <br>
+                    &lt;a href="https://example.com"&gt;External site&lt;/a&gt; <br>
+                    &lt;a href="#section2"&gt;Jump to Section 2&lt;/a&gt; <br>
+                    &lt;a href="mailto:prof@example.com"&gt;Email&lt;/a&gt; <br>
+                    &lt;a href="tel:+911234567890"&gt;Call&lt;/a&gt;
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            • Absolute URLs — the full address, including https://; needed for linking off-site. <br>
+            • Relative URLs — a path relative to the current file; used for linking between pages of the same site (see
+            Week 1's File Paths rules). <br>
+            • Linking to sections within a page — give the target element an id, then link to it with href="#that-id".
+            <br>
+            • Opening links in a new tab — target="_blank". <br>
+            • mailto: and tel: links — open the user's email client or phone dialer directly.
+        </p>
+        <p>
+            <b>
+                <i>
+                    Security consideration: target="_blank" without rel="noopener noreferrer" lets the new tab's page
+                    control the original tab via window.opener — a known phishing vector called reverse tabnabbing.
+                    Always pair the two
+                </i>
+            </b>
+        </p>
+    </div>
+
+    <h2>G. Images</h2>
+    <p>&lt;img&gt;, src, alt, width/height, relative vs. absolute paths, and images-as-links were covered in the
+        Beginning
+        HTML material. Recap the pattern once, then restate the two distinct reasons alt matters: screen readers read it
+        aloud, and it displays if the image fails to load.</p>
+
+
+    <h2>H. Lists</h2>
+    <p>&lt;ul&gt;/&lt;ol&gt;/&lt;li&gt; and nesting were covered previously. New this lecture:</p>
+    <p>
+        <b>• Description lists</b> — &lt;dl&gt;, &lt;dt&gt; (term), &lt;dd&gt; (definition) — for term/definition pairs,
+        like a
+        glossary.
+    </p>
+
+    <table>
+        <tr>
+            <td>
+                &lt;dl&gt; <br>
+                &lt;dt&gt;HTML&lt;/dt&gt; <br>
+                &lt;dd&gt;HyperText Markup Language&lt;/dd&gt; <br>
+                &lt;dt&gt;CSS&lt;/dt&gt; <br>
+                &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt; <br>
+                &lt;/dl&gt;
+            </td>
+        </tr>
+    </table>
+
+
+    <h2>I. Tables</h2>
+    <p>&lt;table&gt;/&lt;tr&gt;/&lt;th&gt;/&lt;td&gt; and &lt;caption&gt; were covered previously. New this lecture:</p>
+
+    <table border="1">
+        <thead>
+            <th>Element / Attribute</th>
+            <th>Purpose</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>&lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;</td>
+                <td>Group header rows, body rows, and footer rows — lets browsers and assistive tech distinguish the
+                    table's regions.</td>
+            </tr>
+            <tr>
+                <td>colspan</td>
+                <td>Merges a cell across multiple columns.</td>
+            </tr>
+            <tr>
+                <td>rowspan</td>
+                <td>Merges a cell across multiple rows.</td>
+            </tr>
+            <tr>
+                <td>scope (basic accessibility)</td>
+                <td>On a &lt;th&gt;, declares whether it heads a column or a row, so screen readers can announce the
+                    right header for each data cell.</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <p>End-of-lecture target: students should be able to construct a complete basic HTML document containing text →
+        links → images → lists → tables, unaided.</p>
+
+
+    <h3>Lecture 5 — Semantic HTML & Accessibility</h3>
+    <h2>A. Why Semantic HTML?</h2>
+    <p><b>• Semantic HTML</b> = elements whose tag name describes their own meaning (&lt;article&gt;, &lt;nav&gt;)
+        rather than
+        saying nothing about their content (&lt;div&gt;, &lt;span&gt;).
+    </p>
+    <p>Benefits, worth naming individually rather than as one vague “it's good practice” claim:</p>
+
+
+    <table border="1">
+        <thead>
+            <th>Benefits for…</th>
+            <th>What semantic HTML gives them</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Browsers</td>
+                <td>Can apply sensible default behavior and rendering without guessing.</td>
+            </tr>
+            <tr>
+                <td>Developer</td>
+                <td>Code that documents its own structure — easier to read six months later.</td>
+            </tr>
+            <tr>
+                <td>Accessibility</td>
+                <td>Screen readers can announce regions (“navigation,” “main content”) instead of a flat wall of divs.
+                </td>
+            </tr>
+            <tr>
+                <td>Search engines</td>
+                <td>Can identify the actual article content vs. boilerplate navigation/ads, which affects indexing.</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2>B. Semantic Page Structure</h2>
+    <table border="1">
+        <thead>
+            <th>Element</th>
+            <th>Represents</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>&lt;header&gt;</td>
+                <td>Introductory content or navigation aids for its nearest sectioning ancestor.</td>
+            </tr>
+            <tr>
+                <td>&lt;nav&gt;</td>
+                <td>A block of navigation links.</td>
+            </tr>
+            <tr>
+                <td>&lt;main&gt;</td>
+                <td>The dominant, unique content of the document — only one per page.</td>
+            </tr>
+            <tr>
+                <td>&lt;section&gt;</td>
+                <td>A generic, thematically grouped section of content, usually with its own heading.</td>
+            </tr>
+            <tr>
+                <td>&lt;article&gt;</td>
+                <td>A self-contained piece of content — a blog post, a news story.</td>
+            </tr>
+            <tr>
+                <td>&lt;aside&gt;</td>
+                <td>Content tangentially related to the main content — a sidebar, a pull quote.</td>
+            </tr>
+            <tr>
+                <td>&lt;footer&gt;</td>
+                <td>Footer content for its nearest sectioning ancestor.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>C. Understanding Their Roles</h2>
+    <p>
+        • Page header vs. section header — &lt;header&gt; is not a once-per-page element. A page can have one
+        &lt;header&gt; at the top and another &lt;header&gt; inside each &lt;article&gt;, each scoped to its nearest
+        sectioning ancestor. <br>
+        • Navigation areas — not every group of links is a &lt;nav&gt; — reserve it for major navigation blocks (site
+        nav, table of contents), not every link cluster. <br>
+        • Main content — exactly one &lt;main&gt; per page, excluding anything repeated across pages (nav, sidebars,
+        footers). <br>
+        • Independent articles — the test for &lt;article&gt;: would this content still make sense if syndicated
+        elsewhere on its own (an RSS feed, a different site)? If yes, it's an article. <br>
+        • Sections within a page — &lt;section&gt; groups thematically related content that isn't independently
+        distributable — usually has its own heading. <br>
+        • Complementary content — &lt;aside&gt; for content related to but separable from the main flow — remove it and
+        the main content still stands alone. <br>
+        • Footer content — like header, can appear once per page and also once per article/section.
+
+    </p>
+
+    <h2>D. Building a Semantic Page</h2>
+    <p>Typical page hierarchy:</p>
+    <table border="1">
+        <tr>
+            <td>
+                <pre>
+                    &lt;html&gt;
+                        └── body
+                            ├── header
+                            ├── nav
+                            ├── main
+                            │    ├── section
+                            │    │    └── article
+                            │    └── aside
+                            └── footer
+                </pre>
+
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <b>
+            <i>
+                Pedagogical choice: teach semantic elements first, not &lt;div&gt;+CSS-everywhere. Once semantics are
+                second nature, the rule for div/span becomes simple: div is a generic block container for when no
+                semantic element fits; span is the same for inline content. That produces far better habits than
+                starting from div and retrofitting semantics later.
+            </i>
+        </b>
+    </p>
+
+    <p>
+        • Choosing the appropriate semantic element and avoiding unnecessary &lt;div&gt; usage are both direct
+        consequences of that one rule.
+    </p>
+
+    <h2>E. Introduction to Web Accessibility</h2>
+    <p>
+        • <b>What is Web accessibility?</b> Designing and building sites usable by people with a full range of
+        abilities,
+        including visual, motor, auditory, and cognitive disabilities. <br>
+        • <b>Why it matters</b> — it's both an ethical baseline and, for many organizations, a legal requirement; and
+        accessible sites are frequently better for everyone (captions help in a noisy room, not just for deaf users).
+        <br>
+        • <b>Keyboard accessibility</b> — every interactive element must be reachable and operable using
+        Tab/Shift+Tab/Enter
+        alone, with a visible focus indicator. Semantic elements (button, a) get this for free; a &lt;div
+        onclick=...&gt; does not. <br>
+        • <b>Screen readers</b> — software that reads page content aloud, relying heavily on semantic structure and alt
+        text to
+        describe what's on screen. <br>
+        • <b>Semantic HTML and assistive technology</b> — this is the payoff of Sections A–D: every semantic choice made
+        above
+        directly determines what a screen reader announces.
+    </p>
+
+    <h2>F. Alternative Text</h2>
+    <p>
+        • <b>Purpose of alt</b> — read aloud by screen readers; shown if the image fails to load. <br>
+        • <b>Writing meaningful alt text</b> — describe the content or function of the image, not its appearance for its
+        own
+        sake — “Company logo” not “blue swirl graphic.” <br>
+        • <b>Decorative images</b> — images that carry no information (a background flourish) should use alt="" (empty,
+        not
+        omitted) so screen readers skip them silently. <br>
+        • <b>Common mistakes</b> — redundant prefixes (“image of…” — the screen reader already announces it's an image),
+        and
+        keyword-stuffed alt text written for search engines instead of users.
+    </p>
+
+    <h2>G. Forms and Accessibility — Introduction</h2>
+    <p>
+        • <b>Importance of labels</b> — an input with no associated label is unusable by screen-reader users — they hear
+        “edit
+        text” with no indication of what to type. <br>
+        • <b>&lt;label&gt;</b> — associates descriptive text with a form control.
+
+    </p>
+
+    <table border="1">
+        <tr>
+            <td>
+                &lt;label for="email"&gt;Email address&lt;/label&gt; <br>
+                &lt;input id="email" type="email"&gt;
+
+            </td>
+        </tr>
+    </table>
+
+
+    <p>
+        • Associating labels with controls — either the for/id pairing above, or by wrapping the input inside the
+        &lt;label&gt; itself: &lt;label&gt;Email &lt;input type="email"&gt;&lt;/label&gt;. <br>
+        Full form treatment — input types, validation, submission — is Lecture 6's job; this is only the accessibility
+        groundwork.
+
+    </p>
+
+    <h2>H. ARIA</h2>
+    <p>
+        • <b>What is ARIA?</b> Accessible Rich Internet Applications — attributes that supply extra roles, states, and
+        properties for assistive technology when native HTML alone isn't enough. <br>
+        • <b>Roles</b> — define an element's purpose (role="tab"); <br>
+        • <b>States</b> — an element's current condition (aria-pressed="true"); <br>
+        • <b>Properties</b> — descriptive metadata (aria-label="Search the site").
+    </p>
+
+    <p>
+        <b>
+            <i>First rule of ARIA: use native HTML first, ARIA only when necessary. If a semantic element already
+                conveys the meaning, adding ARIA on top is redundant at best.</i>
+        </b>
+    </p>
+
+    <p>
+        • <b>Common misuse</b> — sprinkling ARIA roles onto elements that already have native semantics, or adding a
+        role
+        without implementing the keyboard behavior that role implies (e.g. role="button" on a &lt;div&gt; with no
+        keyboard handler is worse than a real &lt;button&gt;). <br>
+        Scope for this course: understand ARIA's purpose and recognize/apply basic roles — not the full specification.
+    </p>
+
+    <h2>Lecture 6 — Forms & Modern HTML</h2>
+    <h3>A. HTML Forms</h3>
+    <p>• <b>Purpose</b> — the standard way a Web page collects input and sends it somewhere.</p>
+
+    <table border="1">
+        <tr>
+            <td colspan="2">
+                &lt;form action="/submit" method="post"&gt; <br>
+                ... <br>
+                &lt;/form&gt;
+
+            </td>
+        </tr>
+        <tr>
+            <td>Attribute</td>
+            <td>Meaning</td>
+        </tr>
+
+        <tr>
+            <td>Action</td>
+            <td>The URL the form data is sent to.</td>
+        </tr>
+
+        <tr>
+            <td>method</td>
+            <td>How it's sent — GET or POST (see Section F).</td>
+        </tr>
+    </table>
+
+    <p>Form controls (input, textarea, select, button) are the individual pieces a form is built from — covered next.
+    </p>
+
+
+    <h2>B. Input Elements</h2>
+    <p>Every input type shares one element, &lt;input&gt;, distinguished by its type attribute:</p>
+
+    <table border="1">
+        <tr>
+            <th>type value</th>
+            <th>Used for</th>
+        </tr>
+        <tr>
+            <td>text</td>
+            <td>Single-line free text.</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>Text hidden as it's typed.</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>Email address, with built-in format validation.</td>
+        </tr>
+        <tr>
+            <td>number</td>
+            <td>Numeric input, often with a stepper.</td>
+        </tr>
+        <tr>
+            <td>tel</td>
+            <td>Phone number (no built-in format validation — use pattern).</td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>A web address, with built-in format validation.</td>
+        </tr>
+        <tr>
+            <td>date / time / datetime-local</td>
+            <td>Native date and/or time pickers.</td>
+        </tr>
+        <tr>
+            <td>radio</td>
+            <td>One choice from a mutually exclusive set (shared name attribute).</td>
+        </tr>
+        <tr>
+            <td>checkbox</td>
+            <td>An independent on/off choice.</td>
+        </tr>
+        <tr>
+            <td>file</td>
+            <td>A file upload.</td>
+        </tr>
+        <tr>
+            <td>hidden</td>
+            <td>A value submitted with the form but not shown to the user.</td>
+        </tr>
+        <tr>
+            <td>submit / reset / button</td>
+            <td>Submits the form / resets to defaults / a plain button with no default action.</td>
+        </tr>
+    </table>
+
+    <h3>C. Other Form Elements</h3>
+
+    <table border="1">
+        <tr>
+            <th>Element</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>&lt;label&gt;</td>
+            <td>Text description associated with a control (Lecture 5).</td>
+        </tr>
+        <tr>
+            <td>&lt;textarea&gt;</td>
+            <td>Multi-line free text input.</td>
+        </tr>
+        <tr>
+            <td>&lt;select&gt; / &lt;option&gt;</td>
+            <td>A dropdown, and its individual choices.</td>
+        </tr>
+    </table>
+
+    <h2>D. Form Attributes</h2>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Attribute</th>
+            <th>Effect</th>
+        </tr>
+
+        <tr>
+            <td>name</td>
+            <td>The key the value is submitted under — required for a field's data to be sent at all.</td>
+        </tr>
+
+        <tr>
+            <td>value</td>
+            <td>The control's current or default value.</td>
+        </tr>
+
+        <tr>
+            <td>placeholder</td>
+            <td>Faint hint text shown when empty — not a substitute for a label.</td>
+        </tr>
+
+        <tr>
+            <td>required</td>
+            <td>Blocks submission until filled in.</td>
+        </tr>
+
+        <tr>
+            <td>disabled</td>
+            <td>Greyed out, not editable, and not submitted.</td>
+        </tr>
+
+        <tr>
+            <td>readonly</td>
+            <td>Visible and selectable, but not editable; still submitted.</td>
+        </tr>
+
+        <tr>
+            <td>checked / selected</td>
+            <td>Pre-selects a checkbox/radio, or an option.</td>
+        </tr>
+
+        <tr>
+            <td>multiple</td>
+            <td>Allows more than one selection (file input or select).</td>
+        </tr>
+
+        <tr>
+            <td>min / max</td>
+            <td>Numeric or date bounds.</td>
+        </tr>
+
+        <tr>
+            <td>minlength / maxlength</td>
+            <td>Text length bounds.</td>
+        </tr>
+
+        <tr>
+            <td>pattern</td>
+            <td>A regular expression the value must match.</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2>E. HTML Form Validation</h2>
+
+    <ol>
+        <li>
+            <b>Why validation is required</b>
+            <p>Catch obviously bad input (empty required field, malformed email) before it's sent anywhere.</p>
+        </li>
+
+        <li>
+            <b>Client-side / HTML5 built-in validation</b>
+            <p>The browser checks:</p>
+
+            <ul>
+                <li>required</li>
+                <li>type="email"</li>
+                <li>min / max</li>
+                <li>minlength / maxlength</li>
+                <li>pattern</li>
+            </ul>
+
+            <p>No JavaScript is needed because browsers provide native validation messages automatically.</p>
+
+            <p><b>Limitation:</b> Client-side validation can be bypassed or disabled. Requests can even be sent directly
+                using tools like curl, so it should never be treated as a security boundary.</p>
+        </li>
+
+        <li>
+            <b>Why server-side validation is still required</b>
+            <p>The server must validate everything again because the client cannot be trusted. This connects directly to
+                backend development in Week 8.</p>
+        </li>
+    </ol>
+
+    <hr>
+
+    <h2>F. Form Submission and HTTP</h2>
+
+    <p>This lecture connects HTML forms with the HTTP request/response model introduced in Week 1.</p>
+
+    <pre>
+HTML Form
+    ↓
+HTTP Request
+    ↓
+Server
+    </pre>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Method</th>
+            <th>Behavior</th>
+        </tr>
+
+        <tr>
+            <td>GET</td>
+            <td>Form data is appended to the URL as query parameters. It is visible, bookmarkable, and length-limited.
+                Never use GET for passwords or sensitive data.</td>
+        </tr>
+
+        <tr>
+            <td>POST</td>
+            <td>Form data travels inside the request body. It is not visible in the URL and has no practical length
+                limit. Used for sensitive information and operations that change data.</td>
+        </tr>
+    </table>
+
+    <p>Query parameters and request bodies become practical concepts when students submit HTML forms.</p>
+
+    <hr>
+
+    <h2>G. Embedding Multimedia</h2>
+
+    <h3>Audio Example</h3>
+
+    <pre>
+&lt;audio controls&gt;
+    &lt;source src="song.mp3" type="audio/mpeg"&gt;
+    &lt;source src="song.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;
+    </pre>
+
+    <h3>Video Example</h3>
+
+    <pre>
+&lt;video width="480" controls poster="preview.jpg"&gt;
+    &lt;source src="clip.mp4" type="video/mp4"&gt;
+    &lt;track src="captions.vtt" kind="captions" srclang="en"&gt;
+&lt;/video&gt;
+    </pre>
+
+    <ul>
+        <li>Multiple source elements allow the browser to choose a supported format.</li>
+        <li>The controls attribute displays the browser's play, pause, and volume controls.</li>
+        <li>Width and height resize the video.</li>
+        <li>The track element provides captions and subtitles for accessibility.</li>
+    </ul>
+
+    <h3>Embedding External Content using iframe</h3>
+
+    <pre>
+&lt;iframe src="https://maps.example.com/embed" width="600" height="450"&gt;&lt;/iframe&gt;
+    </pre>
+
+    <ul>
+        <li>Embeds maps, videos, documents, and other external content.</li>
+        <li>An iframe displays another webpage inside your webpage.</li>
+        <li>The sandbox attribute can restrict what embedded content is allowed to do.</li>
+        <li>Without restrictions, iframes can be involved in attacks like clickjacking.</li>
+    </ul>
+
+    <hr>
+
+    <h2>H. Canvas</h2>
+
+    <ol>
+        <li>
+            <b>What is Canvas?</b>
+            <p>A blank drawing surface that does nothing until JavaScript draws on it.</p>
+        </li>
+
+        <li>
+            <b>Canvas vs Normal HTML Elements</b>
+            <p>HTML elements describe structure, while Canvas is pixel-based drawing controlled through JavaScript.</p>
+        </li>
+
+        <li>
+            <b>Canvas + JavaScript</b>
+            <p>The Canvas API starts with getContext("2d").</p>
+        </li>
+
+        <li>
+            <b>Common Uses</b>
+            <ul>
+                <li>Drawing</li>
+                <li>Charts</li>
+                <li>Games</li>
+                <li>Data Visualization</li>
+            </ul>
+        </li>
+
+        <li>
+            Canvas is introduced only as an overview in this lecture.
+        </li>
+    </ol>
+
+    <hr>
+
+    <h2>I. SVG</h2>
+
+    <ol>
+        <li>
+            <b>What is SVG?</b>
+            <p>Scalable Vector Graphics is an XML-based graphics format that defines shapes mathematically.</p>
+        </li>
+
+        <li>
+            <b>Vector vs Raster</b>
+            <ul>
+                <li>SVG scales without losing quality.</li>
+                <li>JPEG, PNG, and Canvas are raster images that can blur when enlarged.</li>
+            </ul>
+        </li>
+
+        <li>
+            <b>SVG in HTML</b>
+            <p>SVG can be embedded inline or linked as an external file.</p>
+        </li>
+
+        <li>
+            <b>Basic SVG Elements</b>
+            <ul>
+                <li>svg</li>
+                <li>circle</li>
+                <li>rect</li>
+                <li>path</li>
+            </ul>
+        </li>
+
+        <li>
+            <b>SVG vs Canvas</b>
+            <ul>
+                <li>SVG elements remain editable DOM elements.</li>
+                <li>Canvas output becomes pixels only.</li>
+            </ul>
+        </li>
+
+        <li>
+            <b>Typical Uses</b>
+            <ul>
+                <li>Icons</li>
+                <li>Diagrams</li>
+                <li>Charts</li>
+                <li>Logos</li>
+            </ul>
+        </li>
+
+        <li>
+            SVG is introduced only as an overview in this lecture.
+        </li>
+    </ol>
+
+    <hr>
+
+    <h2>Tutorial — HTML Structure of the Semester Project</h2>
+
+    <p>This tutorial combines concepts from Lectures 4–6.</p>
+
+    <h3>Steps</h3>
+
+    <ol>
+        <li>Identify the project's major pages.</li>
+        <li>Identify common elements for every page.</li>
+        <li>Identify the navigation structure.</li>
+        <li>Identify each page's main content area.</li>
+        <li>Identify sections and articles.</li>
+        <li>Identify required forms.</li>
+        <li>Identify where tables or lists are needed.</li>
+        <li>Identify images and multimedia.</li>
+        <li>Choose semantic HTML elements for every region.</li>
+        <li>Consider accessibility from the beginning.</li>
+        <li>Create a basic site map.</li>
+        <li>Create the HTML skeleton for one page.</li>
+    </ol>
+
+    <h3>Example Site Map</h3>
+
+    <pre>
+Project
+│
+├── Home
+├── About
+├── Login
+├── Registration
+├── Dashboard
+└── Other Functional Pages
+    </pre>
+
+    <h3>Example HTML Skeleton</h3>
+
+    <pre>
+&lt;header&gt;
+    &lt;nav&gt;&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;section&gt;
+        &lt;article&gt;
+            ...
+        &lt;/article&gt;
+    &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&lt;/footer&gt;
+    </pre>
+
+    <hr>
+
+    <h2>Lab — Semantic, Accessible Multi-Page Website</h2>
+
+    <h3>Part 1 — Project Structure</h3>
+
+    <ol>
+        <li>Create the project directory.</li>
+        <li>Organize HTML files.</li>
+        <li>Organize images and assets into separate folders.</li>
+        <li>Create navigation between pages.</li>
+    </ol>
+
+    <h3>Part 2 — HTML</h3>
+
+    <ol>
+        <li>Build the semantic structure of every page.</li>
+        <li>Add headings and text content.</li>
+        <li>Add links between pages.</li>
+        <li>Add images.</li>
+        <li>Add lists.</li>
+        <li>Add tables.</li>
+    </ol>
+
+    <h3>Part 3 — Forms</h3>
+
+    <ol>
+        <li>Create forms for the project.</li>
+        <li>Use appropriate input types.</li>
+        <li>Add labels to every input.</li>
+        <li>Add HTML5 validation attributes.</li>
+        <li>Use required, pattern, and similar constraints only where appropriate.</li>
+        <li>Test that the form submits successfully.</li>
+    </ol>
+
+    <h3>Part 4 — Accessibility</h3>
+
+    <ol>
+        <li>Add meaningful alt text to every image.</li>
+        <li>Check heading hierarchy.</li>
+        <li>Ensure every form control has an associated label.</li>
+        <li>Test keyboard navigation using the Tab key.</li>
+        <li>Inspect semantic structure using browser DevTools.</li>
+    </ol>
+
+    <h3>Part 5 — HTML Validation and Testing</h3>
+
+    <ol>
+        <li>Inspect HTML using browser DevTools.</li>
+        <li>Identify and fix structural errors.</li>
+        <li>Validate pages using the W3C HTML Validator.</li>
+        <li>Test every link.</li>
+        <li>Test every form.</li>
+        <li>Test every page before completing the lab.</li>
+    </ol>
+
+</body>
+
+</html>
